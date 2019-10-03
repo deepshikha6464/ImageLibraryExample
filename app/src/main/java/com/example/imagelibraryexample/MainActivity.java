@@ -47,5 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(requestOptions2)
                 .load("https://www.android.com/static/2016/img/share/andy-lg.png")
                 .into(imageView3);
+
+
+        //low resolution image
+        RequestOptions requestOptions3 = new RequestOptions()
+                .override(50, 50);
+
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions3)
+                .load("https://www.android.com/static/2016/img/share/andy-lg.png")
+                .into(imageView4);
     }
 }
