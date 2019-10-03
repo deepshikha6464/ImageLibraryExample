@@ -57,5 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(requestOptions3)
                 .load("https://www.android.com/static/2016/img/share/andy-lg.png")
                 .into(imageView4);
+
+        // error image
+        RequestOptions requestOptions4 = new RequestOptions()
+                .error(R.drawable.ic_error_black_24dp);
+
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions4)
+                .load("https://cdn-images-1.medium.com/max/1200/1*OFJKA8dRYZSb-Kprx-VReg.png")
+                .into(imageView5);
     }
 }
