@@ -1,18 +1,28 @@
 package com.example.imagelibraryexample;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     //ui component
-     ImageView imageView, imageView2, imageView3,imageView4,imageView5, imageView6;
+     ImageView imageView, imageView2, imageView3,imageView4,imageView5, imageView6,imageView7;
+     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         imageView4 = findViewById(R.id.image4);
         imageView5 = findViewById(R.id.image5);
         imageView6 = findViewById(R.id.image6);
+        imageView7 = findViewById(R.id.image7);
+        progressBar = findViewById(R.id.pb_circular);
 
         //loading image with URL
         Glide.with(this)
@@ -79,5 +91,30 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(requestOptions5)
                 .load("https://sdtimes.com/wp-content/uploads/2018/03/2NqZJYQI_400x400.png")
                 .into(imageView6);
+
+        // request listener
+        RequestOptions requestOptions6 = new RequestOptions()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .placeholder(R.drawable.ic_error_black_24dp);
+
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions6)
+                .load("https://sdtimes.com/wp-content/uploads/2018/03/2NqZJYQI_400x400.png")
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+                }).into(imageView7);
+
+
     }
 }
