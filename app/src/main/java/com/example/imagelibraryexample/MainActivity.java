@@ -38,5 +38,14 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(requestOptions)
                 .load("https://www.android.com/static/2016/img/share/andy-lg.png")
                 .into(imageView2);
+
+        //circle cropped image
+        RequestOptions requestOptions2 = new RequestOptions()
+                .circleCrop();
+
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions2)
+                .load("https://www.android.com/static/2016/img/share/andy-lg.png")
+                .into(imageView3);
     }
 }
