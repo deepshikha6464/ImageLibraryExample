@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultRequestOptions(requestOptions4)
                 .load("https://cdn-images-1.medium.com/max/1200/1*OFJKA8dRYZSb-Kprx-VReg.png")
                 .into(imageView5);
+
+        //saving image in cache or disk
+
+        RequestOptions requestOptions5 = new RequestOptions()
+                .error(R.drawable.ic_error_black_24dp)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
+
+        Glide.with(this)
+                .setDefaultRequestOptions(requestOptions5)
+                .load("https://sdtimes.com/wp-content/uploads/2018/03/2NqZJYQI_400x400.png")
+                .into(imageView6);
     }
 }
